@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_name: MyString
+  uniform_type: MyString
+  rental_date: 2025-11-16
+  return_date: 2025-11-16
+  price: 9.99
+
+two:
+  customer_name: MyString
+  uniform_type: MyString
+  rental_date: 2025-11-16
+  return_date: 2025-11-16
+  price: 9.99
