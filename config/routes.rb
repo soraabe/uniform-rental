@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'rentals#index'
   resources :rentals, only: [:index, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
