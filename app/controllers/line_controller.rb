@@ -1,3 +1,6 @@
+require "net/http"
+require "json"
+
 class LineController < ApplicationController
   protect_from_forgery except: :webhook
 
@@ -40,7 +43,28 @@ class LineController < ApplicationController
   private
 
   def send_reply(reply_token, message)
-    # 後でLINE API実装
-    Rails.logger.info "Reply would be sent: #{message}"
+    line_api_url = "https://api.line.me/v2/bot/message/reply"
+    headers = {
+      "Content-Type" => "application/json",
+      "Authorization" => "Bearer #{ENV['LINE_CHANNEL_ACCESS_TOKEN']}"
+    }
+    
+    body = {
+      replyToken: reply_token,
+      messages: [{
+        type: "text",
+        text: message
+      }]
+    }.to_json
+
+    response = Net::HTTP.post(URI(line_api_url), body, headers)
+    
+    if response.code == "200"
+      Rails.logger.info "LINE reply sent successfully: #{message}"
+    else
+      Rails.logger.error "LINE reply failed: #{response.code} #{response.body}"
+    end
+  rescue => e
+    Rails.logger.error "LINE reply error: #{e.message}"
   end
 end
