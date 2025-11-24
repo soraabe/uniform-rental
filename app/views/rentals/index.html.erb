@@ -3,23 +3,31 @@
 <table border="1" style="border-collapse: collapse; width: 100%;">
   <thead>
     <tr>
+      <th>注文番号</th>
       <th>LINE User ID</th>
       <th>Display Name</th>
       <th>Uniform Info</th>
       <th>Status</th>
+      <th>申請日時</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @rentals.each do |rental| %>
+    <% @rentals.order(created_at: :desc).each do |rental| %>
       <tr>
+        <td><strong><%= rental.id %></strong></td>
         <td><%= rental.line_user_id || "-" %></td>
         <td><%= rental.display_name || "-" %></td>
         <td><%= rental.uniform_info || rental.uniform_type %></td>
-        <td><%= rental.status || "未設定" %></td>
         <td>
-          <%= button_to "貸出中にする", rental_path(rental), method: :patch, params: { status: 'rented' }, style: "margin: 2px;" %>
-          <%= button_to "返却済にする", rental_path(rental), method: :patch, params: { status: 'returned' }, style: "margin: 2px;" %>
+          <span style="color: <%= rental.status == 'requested' ? 'orange' : rental.status == 'rented' ? 'blue' : 'green' %>;">
+            <%= rental.status || "未設定" %>
+          </span>
+        </td>
+        <td><%= rental.requested_at&.strftime("%m/%d %H:%M") || rental.created_at.strftime("%m/%d %H:%M") %></td>
+        <td>
+          <%= button_to "貸出中にする", rental_path(rental), method: :patch, params: { status: "rented" }, style: "margin: 2px;" %>
+          <%= button_to "返却済にする", rental_path(rental), method: :patch, params: { status: "returned" }, style: "margin: 2px;" %>
         </td>
       </tr>
     <% end %>
