@@ -1,5 +1,17 @@
 <h1>レンタル管理画面</h1>
 
+<% if flash[:success] %>
+  <div style="background-color: #d4edda; color: #155724; padding: 10px; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 15px;">
+    ✅ <%= flash[:success] %>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+  <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 15px;">
+    ❌ <%= flash[:error] %>
+  </div>
+<% end %>
+
 <table border="1" style="border-collapse: collapse; width: 100%;">
   <thead>
     <tr>
