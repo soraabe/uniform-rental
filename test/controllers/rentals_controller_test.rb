@@ -8,7 +8,7 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update rental status" do
     rental = rentals(:one)
-    patch rental_url(rental), params: { status: 'rented' }
+    patch rental_url(rental), params: { status: "rented" }
     assert_redirected_to rentals_path
   end
 end
