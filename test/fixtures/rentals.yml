@@ -1,15 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  customer_name: MyString
-  uniform_type: MyString
+  customer_name: 田中太郎
+  uniform_type: サッカーユニフォーム
   rental_date: 2025-11-16
-  return_date: 2025-11-16
-  price: 9.99
+  return_date: 2025-11-23
+  price: 3000
+  status: requested
+  line_user_id: U123456
+  display_name: 田中太郎
+  uniform_info: サッカーユニフォーム Lサイズ
 
 two:
-  customer_name: MyString
-  uniform_type: MyString
-  rental_date: 2025-11-16
-  return_date: 2025-11-16
-  price: 9.99
+  customer_name: 佐藤花子
+  uniform_type: バスケユニフォーム
+  rental_date: 2025-11-17
+  return_date: 2025-11-24
+  price: 2500
+  status: rented
+  line_user_id: U654321
+  display_name: 佐藤花子
+  uniform_info: バスケユニフォーム Mサイズ
