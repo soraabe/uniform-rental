@@ -38,8 +38,9 @@
         </td>
         <td><%= rental.requested_at&.strftime("%m/%d %H:%M") || rental.created_at.strftime("%m/%d %H:%M") %></td>
         <td>
-          <%= button_to "貸出中にする", rental_path(rental), method: :patch, params: { status: "rented" }, style: "margin: 2px;" %>
-          <%= button_to "返却済にする", rental_path(rental), method: :patch, params: { status: "returned" }, style: "margin: 2px;" %>
+          <%= button_to "申請中にする", rental_path(rental), method: :patch, params: { status: "requested" }, style: "margin: 2px; background-color: #ffc107; border: none; padding: 5px 8px; border-radius: 3px;" %>
+          <%= button_to "貸出中にする", rental_path(rental), method: :patch, params: { status: "rented" }, style: "margin: 2px; background-color: #007bff; color: white; border: none; padding: 5px 8px; border-radius: 3px;" %>
+          <%= button_to "返却済にする", rental_path(rental), method: :patch, params: { status: "returned" }, style: "margin: 2px; background-color: #28a745; color: white; border: none; padding: 5px 8px; border-radius: 3px;" %>
         </td>
       </tr>
     <% end %>
